@@ -38,12 +38,27 @@ export default defineConfig({
       }
     })
   ],
+  // Tauri uses file:// protocol, must use relative paths
+  base: './',
   server: {
     port: 5173,
+    strictPort: true,
     proxy: {
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true
+      }
+    }
+  },
+  build: {
+    // Tauri requires relative base for file:// protocol
+    assetsInlineLimit: 4096,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['lucide-react', 'clsx']
+        }
       }
     }
   }

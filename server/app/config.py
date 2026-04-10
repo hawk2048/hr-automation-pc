@@ -23,8 +23,8 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     jwt_expires_minutes: int = 1440
 
-    # CORS
-    cors_origins: str = "http://localhost:5173,http://localhost:3000"
+    # CORS - includes localhost for dev, Tauri desktop app origins
+    cors_origins: str = "http://localhost:5173,http://localhost:3000,http://localhost:1420,tauri://localhost,http://localhost:*"
 
     # File Upload
     upload_dir: str = "./uploads"
