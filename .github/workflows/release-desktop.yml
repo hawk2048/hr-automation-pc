@@ -46,15 +46,15 @@ jobs:
           workspaces: './hr-automation/client/src-tauri -> target'
 
       - name: Install frontend dependencies
-        working-directory: hr-automation/client
+        working-directory: client
         run: npm ci
 
       - name: Install Tauri CLI
-        working-directory: hr-automation/client
+        working-directory: client
         run: npm install -D @tauri-apps/cli@^2.2.5
 
       - name: Build Tauri app
-        working-directory: hr-automation/client
+        working-directory: client
         run: npm run tauri:build
         env:
           TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
@@ -65,9 +65,9 @@ jobs:
         with:
           name: hr-automation-${{ matrix.platform }}-exe
           path: |
-            hr-automation/client/src-tauri/target/release/*.exe
-            hr-automation/client/src-tauri/target/release/bundle/nsis/*.exe
-            hr-automation/client/src-tauri/target/release/bundle/msi/*.msi
+            client/src-tauri/target/release/*.exe
+            client/src-tauri/target/release/bundle/nsis/*.exe
+            client/src-tauri/target/release/bundle/msi/*.msi
           if-no-files-found: ignore
 
   release:
