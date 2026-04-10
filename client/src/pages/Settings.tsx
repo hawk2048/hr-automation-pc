@@ -349,3 +349,6 @@ export function SettingsPage({ onError }: SettingsPageProps) {
     </div>
   )
 }
+
+// Default export for routing compatibility
+export default SettingsPage
